@@ -4,7 +4,6 @@ import two from "../assets/images/a1.png";
 import three from "../assets/images/a3.png";
 const Header = () => {
     return (
-
         <div className="max-w-7xl mx-auto  shadow-xl  bg-white rounded-2xl">
             <div className="lg:flex items-center ">
                 <div className="lg:w-1/2">
@@ -23,7 +22,6 @@ const Header = () => {
                 <div className="lg:w-1/2 lg:mt-20 xl:mt-0">
                     <img className=" w-full object-scale-down rounded-2xl" src={headerImg} alt="" />
                 </div>
-
             </div>
             <div className="hidden md:flex justify-around lg:max-w-5xl">
                 <img src={one} alt="" className="h-44 object-cover" />
@@ -32,10 +30,6 @@ const Header = () => {
             </div>
             <div className=" h-64"></div>
         </div>
-
-
-
-
     );
 };
 
