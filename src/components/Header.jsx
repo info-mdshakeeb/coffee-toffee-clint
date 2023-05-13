@@ -5,7 +5,7 @@ import three from "../assets/images/a3.png";
 const Header = () => {
     return (
         <div className="max-w-7xl mx-auto  shadow-xl  bg-white rounded-2xl">
-            <div className="lg:flex items-center ">
+            <div className="flex-col-reverse flex lg:flex-row items-center ">
                 <div className="lg:w-1/2">
                     <div className="">
                         <p className="text-3xl px-20 pt-10 pb-2">Coffee time ...</p>

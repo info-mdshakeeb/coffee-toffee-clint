@@ -4,9 +4,7 @@ import Card from "./Card";
 
 
 const MenuSection = () => {
-    const { user, setSeeMore, seeMore } = useFirebaseInfo()
-
-    console.log(seeMore);
+    const { user, setSeeMore } = useFirebaseInfo()
     const products = [
         {
             id: 1,
