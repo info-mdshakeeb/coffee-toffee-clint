@@ -24,6 +24,17 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {menuLinks}
+                            <div className="dropdown dropdown-end">
+                                {user?.uid ? <label tabIndex={0} className=" cursor-pointer">
+                                    <div className=" ">
+                                        <p>{user?.displayName}</p>
+                                    </div>
+                                </label> :
+                                    <Link to={'/user/login'} className="btn btn-ghost btn-sm rounded-btn ">Login</Link>}
+                                {user && <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                    <li><a onClick={handelLogout}>Logout</a></li>
+                                </ul>}
+                            </div>
                         </ul>
                     </div>
                     <Link to={'/'} className=" normal-case text-2xl font-bold ">Coffee-toffee</Link>
