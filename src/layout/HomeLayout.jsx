@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/footer/Footer';
+import Navbar from '../components/navbar/Navbar';
 
 const HomeLayout = () => {
     return (
         <div>
-            <p>his is nav</p>
+            <Navbar />
             <Outlet />
+            <Footer />
         </div>
     );
 };
