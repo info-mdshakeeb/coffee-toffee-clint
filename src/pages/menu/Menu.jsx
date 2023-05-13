@@ -1,19 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
+import { ScaleLoader } from "react-spinners";
 import { getLimitedProducts } from "../../api/api.jsx";
 import Card from "../../components/Card";
 
+
 const MenuPage = () => {
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = [], isLoading, isFetching } = useQuery({
         queryKey: ['product'],
         queryFn: () => getLimitedProducts(6),
     })
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen bg-white">
-                <div className="">loading--</div>
-            </div>
-        )
-    }
 
     return (
         <>
@@ -24,13 +19,17 @@ const MenuPage = () => {
                         <div className="max-w-7xl mx-auto  shadow-sm  bg-white rounded-xl ">
                             <div className="p-8">
                                 <h1 className="text-3xl font-bold mb-6">Menu</h1>
-                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                                    {products.map((product) => (
-                                        <div className="" key={product?.id}>
-                                            <Card product={product} />
-                                        </div>
-                                    ))}
-                                </div>
+                                {isLoading || isFetching ?
+                                    <div className="h-[70vh] flex items-center justify-center">
+                                        <ScaleLoader color="#000000" />
+                                    </div>
+                                    : <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                                        {products.map((product) => (
+                                            <div className="" key={product?.id}>
+                                                <Card product={product} />
+                                            </div>
+                                        ))}
+                                    </div>}
                             </div>
                         </div>
                     </div>

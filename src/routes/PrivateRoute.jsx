@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { ScaleLoader } from "react-spinners";
 import { useFirebaseInfo } from "../contex/UserContext";
 
 
@@ -7,8 +8,8 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
     console.log(user, loading);
     if (loading) {
-        return <div className="h-screen w-full bg-white flex items-center justify-center">
-            <p>loading ...</p>
+        return <div className="h-[60vh] flex items-center justify-center">
+            <ScaleLoader color="#000000" />
         </div>
     }
     if (!user && !loading) {
