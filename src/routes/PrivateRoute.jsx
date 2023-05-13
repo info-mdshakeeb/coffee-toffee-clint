@@ -3,7 +3,7 @@ import { useFirebaseInfo } from "../contex/UserContext";
 
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = useFirebaseInfo();
+    const { user, loading, } = useFirebaseInfo();
     const location = useLocation();
     console.log(user, loading);
     if (loading) {
@@ -15,8 +15,6 @@ const PrivateRoute = ({ children }) => {
         return <Navigate to='/user/login' state={{ from: location }} replace />
     }
     return children
-
-
 };
 
 export default PrivateRoute;

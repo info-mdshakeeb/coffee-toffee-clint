@@ -9,7 +9,7 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const { loginEmail, GoogleLogin } = useFirebaseInfo();
+    const { loginEmail, GoogleLogin, seeMore, setSeeMore } = useFirebaseInfo();
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -18,8 +18,13 @@ const Login = () => {
     const handelGoogleSignIn = () => {
         GoogleLogin()
             .then((result) => {
-                navigate(from, { replace: true })
-                console.log(result);
+                if (seeMore) {
+                    navigate('/menu', { replace: true })
+                    setSeeMore(false)
+                }
+                else {
+                    navigate(from, { replace: true })
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -34,8 +39,15 @@ const Login = () => {
         console.log(data);
         loginEmail(data.email, data.password)
             .then((re) => {
-                console.log(re);
-                navigate(from, { replace: true })
+                if (seeMore) {
+                    navigate('/menu', { replace: true })
+                    setSeeMore(false)
+                }
+                else {
+                    navigate(from, { replace: true })
+                    setSeeMore(false)
+
+                }
             })
             .catch((err) => {
                 console.log(err);

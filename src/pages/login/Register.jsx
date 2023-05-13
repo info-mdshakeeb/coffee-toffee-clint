@@ -5,7 +5,7 @@ import { useFirebaseInfo } from "../../contex/UserContext";
 
 const Register = () => {
 
-    const { CreateUserEP, GoogleLogin, updateProfilePic } = useFirebaseInfo()
+    const { CreateUserEP, GoogleLogin, updateProfilePic, seeMore, setSeeMore } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const navigate = useNavigate();
@@ -18,7 +18,16 @@ const Register = () => {
             .then(rs => {
                 reset()
                 updateProfilePic(data.name, null)
-                    .then(re => navigate(from, { replace: true }))
+                    .then(re => {
+                        if (seeMore) {
+                            navigate('/menu', { replace: true })
+                            setSeeMore(false)
+                        }
+                        else {
+                            navigate(from, { replace: true })
+                        }
+                    }
+                    )
                     .catch(error => console.log(error))
 
             })
@@ -31,7 +40,13 @@ const Register = () => {
         GoogleLogin()
             .then(re => {
                 console.log(re);
-                navigate(from, { replace: true })
+                if (seeMore) {
+                    navigate('/menu', { replace: true })
+                    setSeeMore(false)
+                }
+                else {
+                    navigate(from, { replace: true })
+                }
             })
             .catch(error => console.log(error))
     }

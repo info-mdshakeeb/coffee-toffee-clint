@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom";
+import { useFirebaseInfo } from "../contex/UserContext";
 import Card from "./Card";
 
 
 const MenuSection = () => {
+    const { user, setSeeMore, seeMore } = useFirebaseInfo()
+
+    console.log(seeMore);
     const products = [
         {
             id: 1,
@@ -36,7 +41,8 @@ const MenuSection = () => {
                 ))}
             </div>
             <div className="text-center mt-6 mb-4">
-                <button className="btn btn-primary btn-sm">See More</button>
+                {user ?
+                    <Link to={'/menu'} onClick={() => setSeeMore(true)} className="btn btn-primary btn-sm">See More</Link> : <Link to={'/user/login'} onClick={() => setSeeMore(true)} className="btn btn-primary btn-sm">See More</Link>}
             </div>
         </div>
     );

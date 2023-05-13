@@ -12,6 +12,7 @@ const UserContext = ({ children }) => {
   const [user, setUser] = useState('')
   const [loading, setLoading] = useState(true)
   // console.log(user);
+  const [seeMore, setSeeMore] = useState(false)
 
   const GoogleLogin = () => signInWithPopup(auth, provider);
   const loginEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
@@ -37,6 +38,7 @@ const UserContext = ({ children }) => {
     GoogleLogin, loginEmail,
     logout,
     updateProfilePic, CreateUserEP,
+    seeMore, setSeeMore
   }
   return (
     <AuthUser.Provider value={authInfo}>
