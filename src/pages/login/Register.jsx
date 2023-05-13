@@ -94,7 +94,7 @@ const Register = () => {
                             <p>Already have an account? -
                                 <Link className='text-yellow-400' to='/user/login'>Login</Link>
                             </p><br />
-                            <p>© Interverse • Contact . Privacy & terms</p>
+                            <p>© Shakeeb • Contact . Privacy & terms</p>
                         </div>
                     </div>
                 </div>
