@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFirebaseInfo } from "../../contex/UserContext";
+import AlertMessage from "../../utilities/AlertMessage";
 
 
 const Register = () => {
 
     const { CreateUserEP, GoogleLogin, updateProfilePic, seeMore, setSeeMore } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { successMessage, errorMessage } = AlertMessage()
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -22,17 +24,19 @@ const Register = () => {
                         if (seeMore) {
                             navigate('/menu', { replace: true })
                             setSeeMore(false)
+                            successMessage('Account Created Successfully')
                         }
                         else {
                             navigate(from, { replace: true })
+
                         }
                     }
                     )
-                    .catch(error => console.log(error))
+                    .catch(error => errorMessage(error.message))
 
             })
             .catch(error => {
-                console.log(error);
+                errorMessage(error.message);
             })
     }
 

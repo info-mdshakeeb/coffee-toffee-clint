@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFirebaseInfo } from "../../contex/UserContext";
+import AlertMessage from "../../utilities/AlertMessage";
 
 const Login = () => {
 
+    const { successMessage, errorMessage } = AlertMessage()
     const {
         register,
         handleSubmit,
@@ -25,9 +27,10 @@ const Login = () => {
                 else {
                     navigate(from, { replace: true })
                 }
+                successMessage('Login Successfully')
             })
             .catch((error) => {
-                console.log(error);
+                errorMessage(error.message)
             });
     };
     const borderPrimaryColor = 'block w-full p-1 px-3 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring focus:ring-opacity-40'
@@ -48,9 +51,10 @@ const Login = () => {
                     setSeeMore(false)
 
                 }
+                successMessage('Login Successfully')
             })
             .catch((err) => {
-                console.log(err);
+                errorMessage(err.message)
             });
     };
 
