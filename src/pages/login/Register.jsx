@@ -14,8 +14,6 @@ const Register = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     const onSubmit = data => {
-        console.log(data.name);
-
         CreateUserEP(data.email, data.password)
             .then(rs => {
                 reset()
@@ -24,16 +22,9 @@ const Register = () => {
                         if (seeMore) {
                             navigate('/menu', { replace: true })
                             setSeeMore(false)
-                            successMessage('Account Created Successfully')
-                        }
-                        else {
-                            navigate(from, { replace: true })
-
-                        }
-                    }
-                    )
-                    .catch(error => errorMessage(error.message))
-
+                        } else { navigate(from, { replace: true }) }
+                        successMessage('Account Created Successfully')
+                    }).catch(error => errorMessage(error.message))
             })
             .catch(error => {
                 errorMessage(error.message);
@@ -43,18 +34,14 @@ const Register = () => {
     const handelGoogleLogin = () => {
         GoogleLogin()
             .then(re => {
-                console.log(re);
                 if (seeMore) {
                     navigate('/menu', { replace: true })
                     setSeeMore(false)
-                }
-                else {
-                    navigate(from, { replace: true })
-                }
+                } else { navigate(from, { replace: true }) }
+                successMessage('Login Successfully')
             })
             .catch(error => console.log(error))
     }
-
     return (
         <div className="bg-base-200">
             <div className="">

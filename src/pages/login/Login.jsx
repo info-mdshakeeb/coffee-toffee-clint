@@ -4,15 +4,9 @@ import { useFirebaseInfo } from "../../contex/UserContext";
 import AlertMessage from "../../utilities/AlertMessage";
 
 const Login = () => {
-
+    const { register, handleSubmit, formState: { errors }, } = useForm();
     const { successMessage, errorMessage } = AlertMessage()
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
     const { loginEmail, GoogleLogin, seeMore, setSeeMore } = useFirebaseInfo();
-
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
@@ -23,13 +17,9 @@ const Login = () => {
                 if (seeMore) {
                     navigate('/menu', { replace: true })
                     setSeeMore(false)
-                }
-                else {
-                    navigate(from, { replace: true })
-                }
+                } else { navigate(from, { replace: true }) }
                 successMessage('Login Successfully')
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 errorMessage(error.message)
             });
     };
@@ -45,35 +35,26 @@ const Login = () => {
                 if (seeMore) {
                     navigate('/menu', { replace: true })
                     setSeeMore(false)
-                }
-                else {
+                } else {
                     navigate(from, { replace: true })
                     setSeeMore(false)
-
-                }
-                successMessage('Login Successfully')
-            })
-            .catch((err) => {
+                } successMessage('Login Successfully')
+            }).catch((err) => {
                 errorMessage(err.message)
             });
     };
-
     return (
         <>
             <div className="flex justify-center min-h-screen bg-base-200 ">
-                <div
-                    className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md">
+                <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md">
                     <h1 className="text-3xl font-semibold text-center text-gray-700 ">
-                        Coffee toffee
-                    </h1>
+                        Coffee toffee </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input
-                                type="text"
-                                placeholder="email"
+                            <input type="text" placeholder="email"
                                 className={`${borderPrimaryColor} ${errors.email ? borderErrorColor : borderSuccessColor}`}
                                 {...register("email", {
                                     required: "Email must required",

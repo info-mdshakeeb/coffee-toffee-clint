@@ -47,7 +47,6 @@ const products = [
 
 const MenuPage = () => {
     return (
-
         <>
             <div className="bg-[#ebebeb] relative overflow-hidden">
                 <div className="bg-[#fdbb4c] h-[500px] w-[500px] rounded-full hidden md:block absolute top-[800px] -right-40 z-0"></div>
