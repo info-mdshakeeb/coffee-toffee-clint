@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFirebaseInfo } from "../../contex/UserContext";
 
 const Login = () => {
@@ -11,11 +11,14 @@ const Login = () => {
     } = useForm();
     const { loginEmail, GoogleLogin } = useFirebaseInfo();
 
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handelGoogleSignIn = () => {
         GoogleLogin()
             .then((result) => {
-
+                navigate(from, { replace: true })
                 console.log(result);
             })
             .catch((error) => {
@@ -32,6 +35,7 @@ const Login = () => {
         loginEmail(data.email, data.password)
             .then((re) => {
                 console.log(re);
+                navigate(from, { replace: true })
             })
             .catch((err) => {
                 console.log(err);
@@ -129,7 +133,7 @@ const Login = () => {
 
                         Do not have an account?{" "}
                         <Link
-                            href="/user/register"
+                            to={"/user/register"}
                             className="font-medium text-gray-700  hover:underline"
                         >
                             Create One

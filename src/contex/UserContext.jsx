@@ -17,7 +17,7 @@ const UserContext = ({ children }) => {
   const loginEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
   const CreateUserEP = (email, password) => createUserWithEmailAndPassword(auth, email, password);
   const logout = () => signOut(auth);
-  const updateProfilePic = (name, photo) =>
+  const updateProfilePic = (name, photo = null) =>
     updateProfile(auth.currentUser,
       { displayName: name, photoURL: photo })
 
